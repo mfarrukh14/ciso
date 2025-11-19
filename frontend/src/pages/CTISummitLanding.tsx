@@ -69,6 +69,8 @@ const CTISummitLanding: React.FC = () => {
       role: 'Chief Information Security Officer',
       company: 'Faysal Bank',
       image: '/people/maad.jpeg',
+      topic: 'Current Landscape of Cybersecurity in Pakistan',
+      topicDescription: 'Overview of recent incidents and statistics on cybersecurity threats',
       bio: 'Strategic security leader driving information security initiatives at Faysal Bank. Specializes in banking security frameworks, threat intelligence, and building resilient cybersecurity programs for financial institutions.',
     },
     {
@@ -76,6 +78,8 @@ const CTISummitLanding: React.FC = () => {
       role: 'Chief Information Security Officer',
       company: 'Bank of Punjab',
       image: '/people/alimanzar.jpeg',
+      topic: 'Ransomware Evolution: Trends and Countermeasures',
+      topicDescription: 'Insights into the ransomware threat landscape and effective prevention strategies',
       bio: 'CISO responsible for safeguarding Bank of Punjab\'s digital assets and customer data. Expert in financial cybersecurity, risk management, and implementing comprehensive security controls in banking environments.',
     },
     {
@@ -83,6 +87,8 @@ const CTISummitLanding: React.FC = () => {
       role: 'Director Cyber Security',
       company: 'NUST / National Research Leader',
       image: '/people/haiderabbas.jpeg',
+      topic: 'Building a Cybersecurity culture within Organizations',
+      topicDescription: 'Approaches to fostering a strong Cybersecurity mindset across all levels of an organization',
       bio: 'Renowned cybersecurity researcher and Director at NUST. National research leader in cybersecurity, contributing to Pakistan\'s cybersecurity strategy, research, and development of next-generation security technologies.',
     },
     {
@@ -90,6 +96,8 @@ const CTISummitLanding: React.FC = () => {
       role: 'Professor of Cyber Security & Former HoD',
       company: 'Air University',
       image: '/people/mehreenafzal.jpeg',
+      topic: 'Cybersecurity Governance: Frameworks and Compliance',
+      topicDescription: 'Discussion on the importance of governance in cybersecurity and local regulations impacting organizations',
       bio: 'Distinguished Professor and former Head of Department at Air University. Leading academic in cybersecurity education, research, and developing the next generation of cybersecurity professionals in Pakistan.',
     },
     {
@@ -97,6 +105,8 @@ const CTISummitLanding: React.FC = () => {
       role: 'Chief Executive Officer',
       company: 'Nayatel',
       image: '/people/wahaj.jpeg',
+      topic: 'Adopting Zero Trust Architecture: A path to Enhanced Security',
+      topicDescription: 'Exploration of Zero Trust principles and their applicability in organizations in Pakistan',
       bio: 'CEO of Nayatel, Pakistan\'s leading fiber-optic telecommunications provider. Visionary leader in telecommunications security, infrastructure protection, and building secure, resilient network systems.',
     },
   ];
@@ -214,72 +224,43 @@ const CTISummitLanding: React.FC = () => {
     handleDragEnd();
   };
 
-  const schedule = [
+  const schedule: Array<{
+    time: string;
+    title: string;
+    type: string;
+    description: string;
+    speaker?: string;
+    speakers?: string[];
+  }> = [
     {
-      time: '09:00 - 09:30',
-      title: 'Registration & Networking Breakfast',
-      type: 'Networking',
-      description: 'Welcome reception with continental breakfast. Network with fellow CISOs and security leaders while enjoying refreshments.',
+      time: '08:30 - 11:00',
+      title: 'Session-1',
+      type: 'Session',
+      description: 'Opening Remarks by GOC 101 Cyber Div (5 mins), Talk by Speaker-1 (25-30 mins), Talk by Speaker-2 (25-30 mins), Talk by Speaker-3 (25-30 mins)',
     },
     {
-      time: '09:30 - 10:15',
-      title: 'Opening Keynote: The Future of Threat Intelligence',
-      speaker: 'Dr. Sarah Chen',
-      type: 'Keynote',
-      description: 'Explore emerging trends in threat intelligence and how CISOs can leverage advanced analytics to stay ahead of evolving cyber threats.',
-    },
-    {
-      time: '10:15 - 10:30',
-      title: 'Coffee Break',
+      time: '11:00 - 11:40',
+      title: 'Lt Refreshment & Exhibition Visit',
       type: 'Break',
-      description: 'Refreshment break with networking opportunities.',
+      description: 'Light refreshment break with networking opportunities and exhibition area visit.',
     },
     {
-      time: '10:30 - 11:30',
-      title: 'Panel Discussion: Evolving Threat Landscape',
-      speakers: ['Michael Rodriguez', 'Dr. Emily Watson', 'James Thompson'],
-      type: 'Panel',
-      description: 'Expert panel discussion on current threat vectors, attack patterns, and strategic defense approaches for enterprise security.',
+      time: '11:40 - 13:15',
+      title: 'Session - II',
+      type: 'Session',
+      description: 'Panel Discussion / Prelanary Session (25-30 mins), Talk by Speaker-4 (25-30 mins), Talk by Speaker-5 (25-30 mins)',
     },
     {
-      time: '11:30 - 12:30',
-      title: 'Workshop: Building Effective Threat Intelligence Programs',
-      speaker: 'Michael Rodriguez',
-      type: 'Workshop',
-      description: 'Hands-on workshop covering best practices for establishing and scaling threat intelligence capabilities within your organization.',
-    },
-    {
-      time: '12:30 - 13:30',
-      title: 'Lunch & Networking',
-      type: 'Networking',
-      description: 'Catered lunch session with dedicated networking time to connect with peers and industry experts.',
-    },
-    {
-      time: '13:30 - 14:30',
-      title: 'AI-Powered Threat Detection',
-      speaker: 'Dr. Emily Watson',
-      type: 'Presentation',
-      description: 'Learn how artificial intelligence and machine learning are revolutionizing threat detection and response capabilities.',
-    },
-    {
-      time: '14:30 - 15:30',
-      title: 'Advanced Threat Hunting Techniques',
-      speaker: 'James Thompson',
-      type: 'Presentation',
-      description: 'Deep dive into proactive threat hunting methodologies and techniques for identifying advanced persistent threats.',
-    },
-    {
-      time: '15:30 - 16:00',
-      title: 'Afternoon Break',
+      time: '13:15 - 14:00',
+      title: 'Lunch/ Prayer break/ Visit of Exhibition',
       type: 'Break',
-      description: 'Afternoon refreshment break.',
+      description: 'Lunch break with prayer facilities and exhibition area visit.',
     },
     {
-      time: '16:00 - 17:00',
-      title: 'Closing Keynote: Next-Generation Security',
-      speaker: 'Dr. Sarah Chen',
-      type: 'Keynote',
-      description: 'Closing session on the future of cybersecurity leadership and how CISOs can prepare for tomorrow\'s security challenges.',
+      time: '14:00 - 16:00',
+      title: 'Session - III',
+      type: 'Session',
+      description: 'Talk by Speaker-6 (25-30 mins), Talk by Speaker-7 (25-30 mins), Chief Guest Address (10-15 mins), Presentation of Souvenirs (10 mins), Gp Photo (10 mins)',
     },
   ];
 
@@ -746,14 +727,12 @@ const CTISummitLanding: React.FC = () => {
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {[
-                          { title: 'Strategic Threat Intelligence', desc: 'Building and leveraging threat intelligence programs that drive executive decision-making and organizational resilience' },
-                          { title: 'Advanced Persistent Threats (APTs)', desc: 'Understanding, detecting, and defending against sophisticated nation-state and criminal threat actors' },
-                          { title: 'AI-Powered Security', desc: 'Leveraging artificial intelligence and machine learning for threat detection, analysis, and automated response' },
-                          { title: 'Zero Trust Architecture', desc: 'Implementing comprehensive zero-trust frameworks and identity-centric security models' },
-                          { title: 'Incident Response & Crisis Management', desc: 'Building effective response capabilities and executive communication strategies during security incidents' },
-                          { title: 'Regulatory Compliance & Risk Management', desc: 'Navigating complex regulatory landscapes while maintaining security posture' },
-                          { title: 'Supply Chain Security', desc: 'Managing third-party risks and securing the extended enterprise ecosystem' },
-                          { title: 'Executive Leadership', desc: 'Communicating security value to boards, managing budgets, and building security-first organizational cultures' },
+                          { title: 'Review National Cybersecurity Developments', desc: 'Examine recent trends, policies and technological advancements shaping Pakistan\'s Cybersecurity landscape' },
+                          { title: 'Address Emerging Threats', desc: 'Identify and assess evolving threats such as ransomware, data breaches and insider risks' },
+                          { title: 'Share Best Practices', desc: 'Enable exchange of effective cybersecurity frameworks, defense strategies and incident response methodologies' },
+                          { title: 'Strengthen Cybersecurity Culture and Ecosystem', desc: 'Promote Awareness, education and capacity building within organizations and across the broader national ecosystem' },
+                          { title: 'Enhance Cybersecurity Governance', desc: 'Discuss governance structures, regulatory compliance and risk management approaches critical for improving organizational security posture' },
+                          { title: 'Foster Cross-Sector Collaboration', desc: 'Encourage coordinated efforts between government, industry, academia and defense institutions' },
                         ].map((item, index) => (
                           <div 
                             key={index}
@@ -1060,19 +1039,32 @@ const CTISummitLanding: React.FC = () => {
                                 </p>
                               </div>
                               
-                              <p className={`text-gray-400 mb-4 md:mb-6 transition-all duration-300 ${
+                              <p className={`text-gray-400 mb-3 md:mb-4 transition-all duration-300 ${
                                 isActive ? 'text-base md:text-lg' : 'text-sm md:text-base'
                               }`}>
                                 {speaker.company}
                               </p>
                               
                               {isActive && (
-                                <div className="relative">
-                                  <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#3B9EFF]/50 to-gray-300/50"></div>
-                                  <p className="text-gray-300 text-sm md:text-base leading-relaxed pl-4 md:pl-6">
-                                    {speaker.bio}
-                                  </p>
-                                </div>
+                                <>
+                                  <div className="mb-4 md:mb-5">
+                                    <div className="inline-block bg-gradient-to-r from-white/10 to-white/5 border border-white/20 rounded-lg px-4 py-3 backdrop-blur-sm">
+                                      <h4 className="text-[#3B9EFF] font-bold text-sm md:text-base mb-1">
+                                        {speaker.topic}
+                                      </h4>
+                                      <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
+                                        {speaker.topicDescription}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="relative">
+                                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#3B9EFF]/50 to-gray-300/50"></div>
+                                    <p className="text-gray-300 text-sm md:text-base leading-relaxed pl-4 md:pl-6">
+                                      {speaker.bio}
+                                    </p>
+                                  </div>
+                                </>
                               )}
 
                               {/* Social links - only show on active */}
