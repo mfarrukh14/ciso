@@ -12,7 +12,7 @@ const CTISummitLanding: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
-  const [autoSlidePaused, setAutoSlidePaused] = useState(false);
+  const [, setAutoSlidePaused] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const speakerSliderRef = useRef<HTMLDivElement>(null);
 
