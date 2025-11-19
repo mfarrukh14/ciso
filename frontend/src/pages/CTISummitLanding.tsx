@@ -126,9 +126,9 @@ const CTISummitLanding: React.FC = () => {
 
   const handleDragEnd = () => {
     if (!isDragging) return;
-    
+
     const threshold = 100; // Minimum drag distance to trigger slide
-    
+
     if (Math.abs(dragOffset) > threshold) {
       if (dragOffset > 0) {
         prevSpeaker();
@@ -136,11 +136,11 @@ const CTISummitLanding: React.FC = () => {
         nextSpeaker();
       }
     }
-    
+
     setIsDragging(false);
     setDragOffset(0);
     setDragStartX(0);
-    
+
     // Resume auto-slide after a delay
     setTimeout(() => {
       setAutoSlidePaused(false);
@@ -160,9 +160,9 @@ const CTISummitLanding: React.FC = () => {
 
     const handleGlobalMouseUp = () => {
       if (!isDragging) return;
-      
+
       const threshold = 100;
-      
+
       if (Math.abs(dragOffset) > threshold) {
         if (dragOffset > 0) {
           setCurrentSpeakerIndex((prev) => (prev - 1 + speakers.length) % speakers.length);
@@ -170,11 +170,11 @@ const CTISummitLanding: React.FC = () => {
           setCurrentSpeakerIndex((prev) => (prev + 1) % speakers.length);
         }
       }
-      
+
       setIsDragging(false);
       setDragOffset(0);
       setDragStartX(0);
-      
+
       setTimeout(() => {
         setAutoSlidePaused(false);
       }, 2000);
@@ -232,37 +232,52 @@ const CTISummitLanding: React.FC = () => {
     speaker?: string;
     speakers?: string[];
   }> = [
-    {
-      time: '08:30 - 11:00',
-      title: 'Session-1',
-      type: 'Session',
-      description: 'Opening Remarks by GOC 101 Cyber Div (5 mins), Talk by Speaker-1 (25-30 mins), Talk by Speaker-2 (25-30 mins), Talk by Speaker-3 (25-30 mins)',
-    },
-    {
-      time: '11:00 - 11:40',
-      title: 'Lt Refreshment & Exhibition Visit',
-      type: 'Break',
-      description: 'Light refreshment break with networking opportunities and exhibition area visit.',
-    },
-    {
-      time: '11:40 - 13:15',
-      title: 'Session - II',
-      type: 'Session',
-      description: 'Panel Discussion / Prelanary Session (25-30 mins), Talk by Speaker-4 (25-30 mins), Talk by Speaker-5 (25-30 mins)',
-    },
-    {
-      time: '13:15 - 14:00',
-      title: 'Lunch/ Prayer break/ Visit of Exhibition',
-      type: 'Break',
-      description: 'Lunch break with prayer facilities and exhibition area visit.',
-    },
-    {
-      time: '14:00 - 16:00',
-      title: 'Session - III',
-      type: 'Session',
-      description: 'Talk by Speaker-6 (25-30 mins), Talk by Speaker-7 (25-30 mins), Chief Guest Address (10-15 mins), Presentation of Souvenirs (10 mins), Gp Photo (10 mins)',
-    },
-  ];
+      {
+        time: '08:30 - 11:00',
+        title: 'Session-1',
+        type: 'Session',
+        description: `
+• Opening Remarks by Chief Guest 101 Cyber Div (5 mins)
+• Talk by Speaker-1 (25–30 mins)
+• Talk by Speaker-2 (25–30 mins)
+• Talk by Speaker-3 (25–30 mins)
+    `.trim(),
+      },
+      {
+        time: '11:00 - 11:40',
+        title: 'Light Refreshment & Exhibition Visit',
+        type: 'Break',
+        description: 'Light refreshment break with networking opportunities and exhibition area visit.',
+      },
+      {
+        time: '11:40 - 13:15',
+        title: 'Session - II',
+        type: 'Session',
+        description: `
+• Panel Discussion / Preliminary Session (25–30 mins)
+• Talk by Speaker-4 (25–30 mins)
+• Talk by Speaker-5 (25–30 mins)
+    `.trim(),
+      },
+      {
+        time: '13:15 - 14:00',
+        title: 'Lunch/ Prayer break/ Visit of Exhibition',
+        type: 'Break',
+        description: 'Lunch break with prayer facilities and exhibition area visit.',
+      },
+      {
+        time: '14:00 - 16:00',
+        title: 'Session - III',
+        type: 'Session',
+        description: `
+• Talk by Speaker-6 (25–30 mins)
+• Talk by Speaker-7 (25–30 mins)
+• Chief Guest Address (10–15 mins)
+• Presentation of Souvenirs (10 mins)
+• Group Photo (10 mins)
+    `.trim(),
+      },
+    ];
 
   const toggleSchedule = (index: number) => {
     setExpandedSchedule((prev) => {
@@ -333,20 +348,19 @@ const CTISummitLanding: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] text-white">
       {/* Loading Screen */}
       {isLoading && (
-        <div className={`fixed inset-0 z-[100] bg-gradient-to-b from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center transition-opacity duration-1000 ${
-          isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}>
+        <div className={`fixed inset-0 z-[100] bg-gradient-to-b from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}>
           <div className="text-center">
             {/* 3D Large Logo with Enhanced Effects */}
-            <div 
+            <div
               className="relative mx-auto mb-16 flex items-center justify-center"
-              style={{ 
+              style={{
                 perspective: '1000px',
                 perspectiveOrigin: 'center center'
               }}
             >
               {/* 3D Logo Container with Transform - Square Frame */}
-              <div 
+              <div
                 className="relative z-10 w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] flex items-center justify-center"
                 style={{
                   transform: 'translateZ(50px) rotateY(-5deg)',
@@ -357,9 +371,9 @@ const CTISummitLanding: React.FC = () => {
                 {/* Multiple Shadow Layers for 3D Depth */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#3B9EFF]/20 via-gray-300/15 to-[#3B9EFF]/20 rounded-2xl blur-3xl" style={{ transform: 'translateZ(-100px)' }}></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#3B9EFF]/15 to-gray-300/10 rounded-2xl blur-2xl" style={{ transform: 'translateZ(-50px)' }}></div>
-                
+
                 {/* Square Frame Container */}
-                <div 
+                <div
                   className="relative w-full h-full flex items-center justify-center rounded-2xl overflow-hidden"
                   style={{
                     transform: 'translateZ(0px)',
@@ -369,7 +383,7 @@ const CTISummitLanding: React.FC = () => {
                   }}
                 >
                   {/* Square Glowing Border */}
-                  <div 
+                  <div
                     className="absolute inset-0 rounded-2xl border-4"
                     style={{
                       borderColor: 'rgba(59, 158, 255, 0.5)',
@@ -378,23 +392,23 @@ const CTISummitLanding: React.FC = () => {
                       background: 'linear-gradient(135deg, rgba(59, 158, 255, 0.1) 0%, rgba(200, 200, 200, 0.05) 100%)'
                     }}
                   ></div>
-                  
+
                   {/* Inner Glow Square */}
                   <div className="absolute inset-4 rounded-xl" style={{ background: 'radial-gradient(ellipse at center, rgba(59, 158, 255, 0.2) 0%, rgba(59, 158, 255, 0.05) 50%, transparent 100%)' }}></div>
-                  
+
                   {/* Logo Image - Rotating 3D inside Square */}
-                  <div 
+                  <div
                     className="relative w-[85%] h-[85%] flex items-center justify-center overflow-hidden"
                     style={{
                       transformStyle: 'preserve-3d',
                       perspective: '1000px'
                     }}
                   >
-                    <img 
-                      src={logoImage} 
-                      alt="CISO Conclave Logo" 
+                    <img
+                      src={logoImage}
+                      alt="CISO Conclave Logo"
                       className="w-full h-full object-contain"
-                      style={{ 
+                      style={{
                         filter: 'drop-shadow(0 0 40px rgba(59, 158, 255, 0.6)) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4))',
                         transform: 'translateZ(50px)',
                         animation: 'rotate3D 8s linear infinite',
@@ -402,20 +416,20 @@ const CTISummitLanding: React.FC = () => {
                       }}
                     />
                   </div>
-                  
+
                   {/* Top Highlight for 3D Effect - Square */}
-                  <div 
+                  <div
                     className="absolute top-0 left-0 right-0 h-1/2 rounded-t-2xl"
-                    style={{ 
+                    style={{
                       background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, transparent 70%)',
                       transform: 'translateZ(30px)'
                     }}
                   ></div>
-                  
+
                   {/* Bottom Shadow for 3D Depth */}
-                  <div 
+                  <div
                     className="absolute bottom-0 left-0 right-0 h-1/2 rounded-b-2xl"
-                    style={{ 
+                    style={{
                       background: 'linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 70%)',
                       transform: 'translateZ(-10px)'
                     }}
@@ -423,11 +437,11 @@ const CTISummitLanding: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Title Below Logo - Delayed Appearance */}
-            <h2 
+            <h2
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-              style={{ 
+              style={{
                 transitionDelay: '2000ms',
                 animation: 'fadeInUp 1s ease-out 2s both',
                 textShadow: '0 0 30px rgba(59, 158, 255, 0.5), 0 0 60px rgba(59, 158, 255, 0.3)'
@@ -437,9 +451,9 @@ const CTISummitLanding: React.FC = () => {
               <span className="text-gray-300">CONCLAVE</span>{' '}
               <span className="text-[#3B9EFF]">2025</span>
             </h2>
-            <p 
+            <p
               className="text-gray-400 mt-6 text-xl md:text-2xl"
-              style={{ 
+              style={{
                 transitionDelay: '2500ms',
                 animation: 'fadeInUp 1s ease-out 2.5s both'
               }}
@@ -451,17 +465,16 @@ const CTISummitLanding: React.FC = () => {
       )}
 
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-[#1a1a1a]/98 backdrop-blur-2xl border-b border-[#3B9EFF]/20 shadow-2xl shadow-[#3B9EFF]/10' : 'bg-transparent'
-      }`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-[#1a1a1a]/98 backdrop-blur-2xl border-b border-[#3B9EFF]/20 shadow-2xl shadow-[#3B9EFF]/10' : 'bg-transparent'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-24">
             <div className="flex items-center space-x-4 group cursor-pointer">
               <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#3B9EFF]/10 to-gray-300/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <img 
-                  src={logoImage} 
-                  alt="CISO Conclave Logo" 
+                <img
+                  src={logoImage}
+                  alt="CISO Conclave Logo"
                   className="w-full h-full object-contain drop-shadow-xl relative z-10"
                   style={{ filter: '' }}
                 />
@@ -501,10 +514,9 @@ const CTISummitLanding: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section 
-        className={`relative pt-40 pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden transition-all duration-1000 ${
-          !isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+      <section
+        className={`relative pt-40 pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden transition-all duration-1000 ${!isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-96 h-96 bg-[#3B9EFF]/25 rounded-full blur-3xl animate-pulse floating-orb"></div>
@@ -514,9 +526,8 @@ const CTISummitLanding: React.FC = () => {
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
-            <div className={`inline-flex items-center space-x-3 bg-gradient-to-r from-[#3B9EFF]/20 via-gray-300/20 to-[#3B9EFF]/20 border-2 border-[#3B9EFF]/40 rounded-full px-6 py-3 mb-6 shadow-lg shadow-[#3B9EFF]/20 backdrop-blur-sm transition-all duration-1000 hover:scale-105 hover:border-[#3B9EFF]/60 ${
-              !isLoading ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-            }`} style={{ transitionDelay: '200ms' }}>
+            <div className={`inline-flex items-center space-x-3 bg-gradient-to-r from-[#3B9EFF]/20 via-gray-300/20 to-[#3B9EFF]/20 border-2 border-[#3B9EFF]/40 rounded-full px-6 py-3 mb-6 shadow-lg shadow-[#3B9EFF]/20 backdrop-blur-sm transition-all duration-1000 hover:scale-105 hover:border-[#3B9EFF]/60 ${!isLoading ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+              }`} style={{ transitionDelay: '200ms' }}>
               <div className="relative">
                 <Calendar className="w-5 h-5 text-[#3B9EFF] drop-shadow-lg" />
                 <div className="absolute inset-0 w-5 h-5 text-[#3B9EFF] animate-ping opacity-20">
@@ -525,31 +536,27 @@ const CTISummitLanding: React.FC = () => {
               </div>
               <span className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#3B9EFF] via-gray-300 to-[#3B9EFF] tracking-wide">December 3, 2025</span>
             </div>
-            <h1 className={`text-6xl md:text-8xl font-extrabold mb-8 leading-tight transition-all duration-1000 ${
-              !isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '400ms', textShadow: '0 0 60px rgba(59, 158, 255, 0.4), 0 0 100px rgba(59, 158, 255, 0.3)' }}>
+            <h1 className={`text-6xl md:text-8xl font-extrabold mb-8 leading-tight transition-all duration-1000 ${!isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '400ms', textShadow: '0 0 60px rgba(59, 158, 255, 0.4), 0 0 100px rgba(59, 158, 255, 0.3)' }}>
               <span className="text-[#3B9EFF]">CISO</span>{' '}
               <span className="text-gray-300">CONCLAVE</span>
               <br />
               <span className="text-[#3B9EFF]">
-              SUMMIT 2025 
+                SUMMIT 2025
               </span>
             </h1>
-            <p className={`text-xl md:text-2xl text-gray-300 mb-6 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 ${
-              !isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '600ms' }}>
-              Join Chief Information Security Officers and industry leaders for a premier conclave 
-              featuring cutting-edge insights, strategic threat intelligence and executive-level 
+            <p className={`text-xl md:text-2xl text-gray-300 mb-6 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 ${!isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '600ms' }}>
+              Join Chief Information Security Officers and industry leaders for a premier conclave
+              featuring cutting-edge insights, strategic threat intelligence and executive-level
               networking in cybersecurity.
             </p>
-            <p className={`text-base md:text-lg text-[#3B9EFF] mb-10 font-semibold transition-all duration-1000 ${
-              !isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '700ms' }}>
+            <p className={`text-base md:text-lg text-[#3B9EFF] mb-10 font-semibold transition-all duration-1000 ${!isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '700ms' }}>
               Organized by <span className="text-gray-300">Cyber Division</span>
             </p>
-            <div className={`flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 transition-all duration-1000 ${
-              !isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '800ms' }}>
+            <div className={`flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 transition-all duration-1000 ${!isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '800ms' }}>
               <a href="#register" className="btn-primary inline-flex items-center space-x-2 group hover:scale-105 transition-transform duration-300">
                 <span>Register Now</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -558,9 +565,8 @@ const CTISummitLanding: React.FC = () => {
                 <span>Learn More</span>
               </a>
             </div>
-            <div className={`mt-20 flex flex-wrap items-center justify-center gap-6 md:gap-8 transition-all duration-1000 ${
-              !isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '1000ms' }}>
+            <div className={`mt-20 flex flex-wrap items-center justify-center gap-6 md:gap-8 transition-all duration-1000 ${!isLoading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '1000ms' }}>
               {/* Location Card */}
               <div className="group relative flex items-center space-x-4 bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border-2 border-[#3B9EFF]/30 rounded-2xl px-8 py-5 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/15 transition-all duration-300 hover:scale-110 hover:border-[#3B9EFF]/60 hover:shadow-2xl hover:shadow-[#3B9EFF]/30">
                 <div className="relative">
@@ -573,7 +579,7 @@ const CTISummitLanding: React.FC = () => {
                   <span className="text-sm md:text-base text-gray-300">Rawalpindi</span>
                 </div>
               </div>
-              
+
               {/* Duration Card */}
               <div className="group relative flex items-center space-x-4 bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border-2 border-gray-300/30 rounded-2xl px-8 py-5 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/15 transition-all duration-300 hover:scale-110 hover:border-gray-300/60 hover:shadow-2xl hover:shadow-gray-300/30">
                 <div className="relative">
@@ -586,7 +592,7 @@ const CTISummitLanding: React.FC = () => {
                   <span className="text-sm md:text-base text-gray-300">Full Event</span>
                 </div>
               </div>
-              
+
               {/* Attendees Card */}
               <div className="group relative flex items-center space-x-4 bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border-2 border-[#3B9EFF]/30 rounded-2xl px-8 py-5 hover:bg-gradient-to-br hover:from-white/15 hover:via-white/10 hover:to-white/15 transition-all duration-300 hover:scale-110 hover:border-[#3B9EFF]/60 hover:shadow-2xl hover:shadow-[#3B9EFF]/30">
                 <div className="relative">
@@ -605,25 +611,23 @@ const CTISummitLanding: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section 
+      <section
         ref={setSectionRef('features')}
         data-section-id="features"
-        className={`py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
-          isSectionVisible('features') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${isSectionVisible('features') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div 
-                  key={index} 
-                  className={`card p-6 text-center transition-all duration-700 hover:scale-105 ${
-                    isSectionVisible('features') 
-                      ? 'opacity-100 translate-y-0' 
+                <div
+                  key={index}
+                  className={`card p-6 text-center transition-all duration-700 hover:scale-105 ${isSectionVisible('features')
+                      ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-10'
-                  }`}
+                    }`}
                   style={{
                     transitionDelay: `${index * 100}ms`
                   }}
@@ -641,28 +645,26 @@ const CTISummitLanding: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section 
+      <section
         id="about"
         ref={setSectionRef('about')}
         data-section-id="about"
-        className={`relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-white/5 to-transparent transition-all duration-1000 overflow-hidden ${
-          isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-white/5 to-transparent transition-all duration-1000 overflow-hidden ${isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 right-10 w-96 h-96 bg-[#3B9EFF]/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-gray-300/10 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
               <span className="text-sm font-semibold text-[#3B9EFF] uppercase tracking-wider">About The Event</span>
             </div>
-            <h2 className={`text-5xl md:text-6xl font-extrabold mb-6 transition-all duration-1000 ${
-              isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <h2 className={`text-5xl md:text-6xl font-extrabold mb-6 transition-all duration-1000 ${isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <span className="text-white">About </span>
               <span className="text-[#3B9EFF]">CISO</span>{' '}
               <span className="text-gray-300">CONCLAVE</span>
@@ -671,24 +673,22 @@ const CTISummitLanding: React.FC = () => {
                 2025
               </span>
             </h2>
-            <p className={`text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 ${
-              isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '200ms' }}>
-              The premier CISO Conclave bringing together Chief Information Security Officers, 
+            <p className={`text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 ${isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '200ms' }}>
+              The premier CISO Conclave bringing together Chief Information Security Officers,
               cybersecurity professionals, threat intelligence analysts, and security leaders.
             </p>
-            <p className={`text-base md:text-lg text-[#3B9EFF] mt-4 font-semibold transition-all duration-1000 ${
-              isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '300ms' }}>
+            <p className={`text-base md:text-lg text-[#3B9EFF] mt-4 font-semibold transition-all duration-1000 ${isSectionVisible('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '300ms' }}>
               Organized by <span className="text-gray-300">Cyber Division</span>
             </p>
           </div>
-          
+
           <div className="mb-16">
             <div className="relative group">
               {/* Glow effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-[#3B9EFF] via-gray-300 to-[#3B9EFF] rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-              
+
               <div className="relative card p-10 md:p-12 backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/10 border border-white/10 shadow-2xl">
                 <div className="flex items-center justify-center mb-8">
                   <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#3B9EFF] to-transparent"></div>
@@ -697,7 +697,7 @@ const CTISummitLanding: React.FC = () => {
                   </h3>
                   <div className="w-16 h-1 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
                 </div>
-                
+
                 <div className="space-y-8">
                   <div className="relative">
                     <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#3B9EFF] to-gray-300 rounded-full"></div>
@@ -707,13 +707,13 @@ const CTISummitLanding: React.FC = () => {
                       </h4>
                       <div className="relative">
                         <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#3B9EFF]/50 to-gray-300/50"></div>
-                            <p className="text-gray-200 text-lg md:text-xl leading-relaxed pl-6 italic font-light">
-                              "Fortifying Pakistan's Digital Future: Building Resilience Against Cyber Threats"
-                            </p>
+                        <p className="text-gray-200 text-lg md:text-xl leading-relaxed pl-6 italic font-light">
+                          "Fortifying Pakistan's Digital Future: Building Resilience Against Cyber Threats"
+                        </p>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="relative pt-8 border-t border-white/10">
                     <div className="absolute -left-4 top-8 bottom-0 w-1 bg-gradient-to-b from-gray-300 to-[#3B9EFF] rounded-full"></div>
                     <div className="pl-6">
@@ -721,8 +721,8 @@ const CTISummitLanding: React.FC = () => {
                         Theme & Scope
                       </h4>
                       <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                        The CISO Conclave 2025 focuses on empowering security executives 
-                        and leaders with actionable threat intelligence, strategic insights, and 
+                        The CISO Conclave 2025 focuses on empowering security executives
+                        and leaders with actionable threat intelligence, strategic insights, and
                         innovative defense methodologies. Our comprehensive scope encompasses:
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -734,7 +734,7 @@ const CTISummitLanding: React.FC = () => {
                           { title: 'Enhance Cybersecurity Governance', desc: 'Discuss governance structures, regulatory compliance and risk management approaches critical for improving organizational security posture' },
                           { title: 'Foster Cross-Sector Collaboration', desc: 'Encourage coordinated efforts between government, industry, academia and defense institutions' },
                         ].map((item, index) => (
-                          <div 
+                          <div
                             key={index}
                             className="group relative p-5 rounded-xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 hover:border-[#3B9EFF]/30 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#3B9EFF]/10"
                           >
@@ -794,7 +794,7 @@ const CTISummitLanding: React.FC = () => {
                 </ul>
               </div>
             </div>
-            
+
             {/* Event Highlights Section */}
             <div className="relative group">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-300 to-[#3B9EFF] rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
@@ -841,13 +841,12 @@ const CTISummitLanding: React.FC = () => {
       </section>
 
       {/* Speakers Section */}
-      <section 
+      <section
         id="speakers"
         ref={setSectionRef('speakers')}
         data-section-id="speakers"
-        className={`relative py-24 px-4 sm:px-6 lg:px-8 transition-all duration-1000 overflow-hidden ${
-          isSectionVisible('speakers') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`relative py-24 px-4 sm:px-6 lg:px-8 transition-all duration-1000 overflow-hidden ${isSectionVisible('speakers') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -860,16 +859,14 @@ const CTISummitLanding: React.FC = () => {
             <div className="inline-block mb-4">
               <span className="text-sm font-semibold text-[#3B9EFF] uppercase tracking-wider">Our Experts</span>
             </div>
-            <h2 className={`text-5xl md:text-6xl font-extrabold mb-6 transition-all duration-1000 ${
-              isSectionVisible('speakers') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <h2 className={`text-5xl md:text-6xl font-extrabold mb-6 transition-all duration-1000 ${isSectionVisible('speakers') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <span className="bg-gradient-to-r from-white via-[#3B9EFF] to-gray-300 bg-clip-text text-transparent">
                 Featured Speakers
               </span>
             </h2>
-            <p className={`text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${
-              isSectionVisible('speakers') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '200ms' }}>
+            <p className={`text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${isSectionVisible('speakers') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '200ms' }}>
               Learn from industry experts and thought leaders in cybersecurity and threat intelligence.
             </p>
           </div>
@@ -893,7 +890,7 @@ const CTISummitLanding: React.FC = () => {
             </button>
 
             {/* 3D Carousel Wrapper */}
-            <div 
+            <div
               ref={speakerSliderRef}
               className="relative h-[600px] md:h-[700px] perspective-1000 select-none"
               style={{
@@ -954,9 +951,8 @@ const CTISummitLanding: React.FC = () => {
                   return (
                     <div
                       key={index}
-                      className={`absolute w-full max-w-4xl px-4 ${
-                        isDragging && isActive ? '' : 'transition-all duration-700 ease-in-out'
-                      }`}
+                      className={`absolute w-full max-w-4xl px-4 ${isDragging && isActive ? '' : 'transition-all duration-700 ease-in-out'
+                        }`}
                       style={{
                         transform: transform,
                         transformStyle: 'preserve-3d',
@@ -968,43 +964,38 @@ const CTISummitLanding: React.FC = () => {
                     >
                       <div className="relative group">
                         {/* Glow effect - stronger for active */}
-                        <div 
-                          className={`absolute -inset-1 bg-gradient-to-r from-[#3B9EFF] via-gray-300 to-[#3B9EFF] rounded-3xl blur-2xl transition-opacity duration-500 ${
-                            isActive ? 'opacity-40' : 'opacity-20'
-                          }`}
+                        <div
+                          className={`absolute -inset-1 bg-gradient-to-r from-[#3B9EFF] via-gray-300 to-[#3B9EFF] rounded-3xl blur-2xl transition-opacity duration-500 ${isActive ? 'opacity-40' : 'opacity-20'
+                            }`}
                         ></div>
-                        
+
                         {/* Speaker Card */}
-                        <div className={`relative card p-6 md:p-10 backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/10 border border-white/10 shadow-2xl transition-all duration-500 ${
-                          isActive ? 'shadow-[#3B9EFF]/30' : ''
-                        }`}>
+                        <div className={`relative card p-6 md:p-10 backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/10 border border-white/10 shadow-2xl transition-all duration-500 ${isActive ? 'shadow-[#3B9EFF]/30' : ''
+                          }`}>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
                             {/* Image Section */}
                             <div className="flex justify-center md:justify-start">
                               <div className="relative">
                                 {/* Decorative rings */}
                                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#3B9EFF]/20 to-gray-300/20 blur-xl scale-150"></div>
-                                <div className={`absolute -inset-2 rounded-full bg-gradient-to-br from-[#3B9EFF]/30 to-gray-300/30 transition-opacity duration-500 ${
-                                  isActive ? 'animate-pulse opacity-100' : 'opacity-50'
-                                }`}></div>
-                                
+                                <div className={`absolute -inset-2 rounded-full bg-gradient-to-br from-[#3B9EFF]/30 to-gray-300/30 transition-opacity duration-500 ${isActive ? 'animate-pulse opacity-100' : 'opacity-50'
+                                  }`}></div>
+
                                 {/* Image container */}
-                                <div className={`relative rounded-full overflow-hidden ring-4 transition-all duration-500 shadow-2xl ${
-                                  isActive 
-                                    ? 'w-48 h-48 md:w-56 md:h-56 ring-[#3B9EFF]/40 group-hover:ring-gray-300/60' 
+                                <div className={`relative rounded-full overflow-hidden ring-4 transition-all duration-500 shadow-2xl ${isActive
+                                    ? 'w-48 h-48 md:w-56 md:h-56 ring-[#3B9EFF]/40 group-hover:ring-gray-300/60'
                                     : 'w-32 h-32 md:w-40 md:h-40 ring-[#3B9EFF]/20'
-                                }`}>
-                                  <img 
-                                    src={speaker.image} 
+                                  }`}>
+                                  <img
+                                    src={speaker.image}
                                     alt={speaker.name}
-                                    className={`w-full h-full object-cover transition-transform duration-700 ${
-                                      isActive ? 'scale-110 group-hover:scale-100' : 'scale-100'
-                                    }`}
+                                    className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-110 group-hover:scale-100' : 'scale-100'
+                                      }`}
                                   />
                                   {/* Overlay gradient */}
                                   <div className="absolute inset-0 bg-gradient-to-t from-[#3B9EFF]/20 to-transparent"></div>
                                 </div>
-                                
+
                                 {/* Floating badge - only show on active */}
                                 {isActive && (
                                   <div className="absolute -bottom-2 -right-2 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#3B9EFF] to-gray-400 rounded-full flex items-center justify-center shadow-xl border-4 border-[#1a1a1a] animate-bounce">
@@ -1017,34 +1008,30 @@ const CTISummitLanding: React.FC = () => {
                             {/* Content Section */}
                             <div className="md:col-span-2 text-center md:text-left">
                               <div className="mb-4">
-                                <span className={`inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-gradient-to-r from-[#3B9EFF]/20 to-gray-300/20 border border-[#3B9EFF]/30 text-[#3B9EFF] text-xs md:text-sm font-semibold mb-3 transition-all duration-300 ${
-                                  isActive ? 'opacity-100' : 'opacity-70'
-                                }`}>
+                                <span className={`inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-gradient-to-r from-[#3B9EFF]/20 to-gray-300/20 border border-[#3B9EFF]/30 text-[#3B9EFF] text-xs md:text-sm font-semibold mb-3 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-70'
+                                  }`}>
                                   Expert Speaker
                                 </span>
                               </div>
-                              
-                              <h3 className={`font-bold mb-2 md:mb-3 bg-gradient-to-r from-white via-[#3B9EFF] to-gray-300 bg-clip-text text-transparent transition-all duration-300 ${
-                                isActive ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'
-                              }`}>
+
+                              <h3 className={`font-bold mb-2 md:mb-3 bg-gradient-to-r from-white via-[#3B9EFF] to-gray-300 bg-clip-text text-transparent transition-all duration-300 ${isActive ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'
+                                }`}>
                                 {speaker.name}
                               </h3>
-                              
+
                               <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                                 <div className="w-1 h-4 md:h-6 bg-gradient-to-b from-[#3B9EFF] to-gray-300 rounded-full"></div>
-                                <p className={`text-[#3B9EFF] font-semibold transition-all duration-300 ${
-                                  isActive ? 'text-lg md:text-xl' : 'text-sm md:text-base'
-                                }`}>
+                                <p className={`text-[#3B9EFF] font-semibold transition-all duration-300 ${isActive ? 'text-lg md:text-xl' : 'text-sm md:text-base'
+                                  }`}>
                                   {speaker.role}
                                 </p>
                               </div>
-                              
-                              <p className={`text-gray-400 mb-3 md:mb-4 transition-all duration-300 ${
-                                isActive ? 'text-base md:text-lg' : 'text-sm md:text-base'
-                              }`}>
+
+                              <p className={`text-gray-400 mb-3 md:mb-4 transition-all duration-300 ${isActive ? 'text-base md:text-lg' : 'text-sm md:text-base'
+                                }`}>
                                 {speaker.company}
                               </p>
-                              
+
                               {isActive && (
                                 <>
                                   <div className="mb-4 md:mb-5">
@@ -1057,7 +1044,7 @@ const CTISummitLanding: React.FC = () => {
                                       </p>
                                     </div>
                                   </div>
-                                  
+
                                   <div className="relative">
                                     <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#3B9EFF]/50 to-gray-300/50"></div>
                                     <p className="text-gray-300 text-sm md:text-base leading-relaxed pl-4 md:pl-6">
@@ -1094,11 +1081,10 @@ const CTISummitLanding: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => goToSpeaker(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentSpeakerIndex
+                  className={`transition-all duration-300 rounded-full ${index === currentSpeakerIndex
                       ? 'w-12 h-3 bg-gradient-to-r from-[#3B9EFF] to-gray-300 shadow-lg shadow-[#3B9EFF]/50'
                       : 'w-3 h-3 bg-gray-600 hover:bg-gray-500'
-                  }`}
+                    }`}
                   aria-label={`Go to speaker ${index + 1}`}
                 />
               ))}
@@ -1108,22 +1094,19 @@ const CTISummitLanding: React.FC = () => {
       </section>
 
       {/* Schedule Section */}
-      <section 
+      <section
         id="schedule"
         ref={setSectionRef('schedule')}
         data-section-id="schedule"
-        className={`py-20 px-4 sm:px-6 lg:px-8 bg-white/5 transition-all duration-1000 ${
-          isSectionVisible('schedule') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 bg-white/5 transition-all duration-1000 ${isSectionVisible('schedule') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${
-              isSectionVisible('schedule') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>Event Schedule</h2>
-            <p className={`text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 ${
-              isSectionVisible('schedule') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '200ms' }}>
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${isSectionVisible('schedule') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>Event Schedule</h2>
+            <p className={`text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 ${isSectionVisible('schedule') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '200ms' }}>
               Two days packed with insightful sessions, workshops, and networking opportunities.
             </p>
           </div>
@@ -1131,13 +1114,12 @@ const CTISummitLanding: React.FC = () => {
             {schedule.map((item, index) => {
               const isExpanded = expandedSchedule.has(index);
               return (
-                <div 
-                  key={index} 
-                  className={`card overflow-hidden transition-all duration-500 ${
-                    isSectionVisible('schedule') 
-                      ? 'opacity-100 translate-x-0' 
+                <div
+                  key={index}
+                  className={`card overflow-hidden transition-all duration-500 ${isSectionVisible('schedule')
+                      ? 'opacity-100 translate-x-0'
                       : 'opacity-0 -translate-x-10'
-                  } ${isExpanded ? 'bg-white/8 border border-white/10' : 'hover:bg-white/5 border border-transparent'}`}
+                    } ${isExpanded ? 'bg-white/8 border border-white/10' : 'hover:bg-white/5 border border-transparent'}`}
                   style={{
                     transitionDelay: `${index * 30}ms`
                   }}
@@ -1164,20 +1146,18 @@ const CTISummitLanding: React.FC = () => {
                         )}
                       </div>
                     </div>
-                    <ChevronDown 
-                      className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-all duration-300 group-hover:text-[#3B9EFF] mt-1 ${
-                        isExpanded ? 'transform rotate-180 text-[#3B9EFF]' : ''
-                      }`}
+                    <ChevronDown
+                      className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-all duration-300 group-hover:text-[#3B9EFF] mt-1 ${isExpanded ? 'transform rotate-180 text-[#3B9EFF]' : ''
+                        }`}
                     />
                   </button>
-                  <div 
-                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      isExpanded ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
                   >
                     <div className="px-6 pb-6 pt-2">
                       <div className="pl-36 border-l-2 border-[#3B9EFF]/20">
-                        <p className="text-gray-300 leading-relaxed text-sm">
+                        <p className="text-gray-300 leading-relaxed text-sm whitespace-pre-line">
                           {item.description}
                         </p>
                       </div>
@@ -1191,22 +1171,19 @@ const CTISummitLanding: React.FC = () => {
       </section>
 
       {/* Sponsors Section */}
-      <section 
+      <section
         id="sponsors"
         ref={setSectionRef('sponsors')}
         data-section-id="sponsors"
-        className={`py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
-          isSectionVisible('sponsors') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${isSectionVisible('sponsors') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${
-              isSectionVisible('sponsors') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>Our Sponsors</h2>
-            <p className={`text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 ${
-              isSectionVisible('sponsors') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} style={{ transitionDelay: '200ms' }}>
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${isSectionVisible('sponsors') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>Our Sponsors</h2>
+            <p className={`text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 ${isSectionVisible('sponsors') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '200ms' }}>
               Thank you to our amazing sponsors who make this event possible.
             </p>
           </div>
@@ -1218,9 +1195,9 @@ const CTISummitLanding: React.FC = () => {
                 {sponsors.filter(s => s.tier === 'Platinum').map((sponsor, index) => (
                   <div key={index} className="card p-8 w-64 h-40 flex items-center justify-center hover:scale-105 transition-transform duration-300">
                     {sponsor.image ? (
-                      <img 
-                        src={sponsor.image} 
-                        alt={sponsor.name} 
+                      <img
+                        src={sponsor.image}
+                        alt={sponsor.name}
                         className="max-w-full max-h-full object-contain opacity-90 hover:opacity-100 transition-opacity"
                       />
                     ) : (
@@ -1257,26 +1234,22 @@ const CTISummitLanding: React.FC = () => {
       </section>
 
       {/* Registration CTA Section */}
-      <section 
+      <section
         id="register"
         ref={setSectionRef('register')}
         data-section-id="register"
-        className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#3B9EFF]/20 via-gray-300/20 to-[#3B9EFF]/20 transition-all duration-1000 ${
-          isSectionVisible('register') ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#3B9EFF]/20 via-gray-300/20 to-[#3B9EFF]/20 transition-all duration-1000 ${isSectionVisible('register') ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
       >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${
-            isSectionVisible('register') ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-          }`}>Ready to Join Us?</h2>
-          <p className={`text-xl text-gray-300 mb-4 transition-all duration-1000 ${
-            isSectionVisible('register') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`} style={{ transitionDelay: '200ms' }}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${isSectionVisible('register') ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+            }`}>Ready to Join Us?</h2>
+          <p className={`text-xl text-gray-300 mb-4 transition-all duration-1000 ${isSectionVisible('register') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`} style={{ transitionDelay: '200ms' }}>
             Secure your spot at the most anticipated cybersecurity event of the year.
           </p>
-          <p className={`text-base text-[#3B9EFF] mb-8 font-semibold transition-all duration-1000 ${
-            isSectionVisible('register') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`} style={{ transitionDelay: '250ms' }}>
+          <p className={`text-base text-[#3B9EFF] mb-8 font-semibold transition-all duration-1000 ${isSectionVisible('register') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`} style={{ transitionDelay: '250ms' }}>
             Organized by <span className="text-gray-300">Cyber Division</span>
           </p>
           <div className="card p-8 max-w-2xl mx-auto">
@@ -1327,9 +1300,9 @@ const CTISummitLanding: React.FC = () => {
               <div className="flex items-center space-x-4 mb-5">
                 <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3B9EFF]/10 to-gray-300/10 rounded-full blur-md"></div>
-                  <img 
-                    src={logoImage} 
-                    alt="CISO Conclave Logo" 
+                  <img
+                    src={logoImage}
+                    alt="CISO Conclave Logo"
                     className="w-full h-full object-contain drop-shadow-xl relative z-10"
                     style={{ filter: 'drop-shadow(0 0 10px rgba(59, 158, 255, 0.3))' }}
                   />
